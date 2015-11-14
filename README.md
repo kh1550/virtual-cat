@@ -5,7 +5,23 @@ CSCI-UA.480-001: Applied Internet Tech
 
 For the more unforunate of us who cannot have a cat, Virtual Cat is here to fill that blasphemous void (Disclaimer: does not actually substitute for the glory that is having a real cat). Users will start with a standard cat and must earn its affection through treats, rubs, and gifts. However, these luxuries cost money! Users will have to use work actions to earn money to please their furry friend. Users may also bring their cats to their own Cat Cafe where they can send invite links to other Virtual Cat players and chat with their cats.
 
+# Requirements
+* Express
+* Express Handlebars
+* Express Generator
+* Socket.io
+ 
+# Wireframes
+pretends pretty pictures are here
 
+# Site Map
+pretends pretty map is here
+
+# Use Case Diagram
+pretends I know how to do this
+
+# Research
+* How to use Socket.io: Socket.io is necessary for real-time chatting between players.
 
 # Backup Idea
 
