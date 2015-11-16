@@ -22,11 +22,9 @@ For the more unforunate of us who cannot have a cat, Virtual Cat is here to fill
 pretends I know how to do this
 
 # Research
-* Real-time chatting
-..* I would like to add some social interactions so the game doesn't feel too pointless. I will need a way to make an unique url for each player's cat cafe, and restrict vistors to one other player. I'll need to research how to implement a chatbox and share their cats. The module I plan to use for real-time sharing is Socket.io. For the unique URL, I may write up my own function.
+* **Real-time chatting** I would like to add some social interactions so the game doesn't feel too pointless. I will need a way to make an unique url for each player's cat cafe, and restrict vistors to one other player. I'll need to research how to implement a chatbox and share their cats. The module I plan to use for real-time sharing is Socket.io. For the unique URL, I may write up my own function.
 
-* Event history
-..* I'm still contemplating this but I think I would like to add a chatbox-like event history that supplies random messages, such as telling the user their cat is "hungry" to motivate players to "feed" their cats, or that their cats love them to offer some sort of gratification. I do not think I will need modules for this.
+* **Event history** I'm still contemplating this but I think I would like to add a chatbox-like event history that supplies random messages, such as telling the user their cat is "hungry" to motivate players to "feed" their cats, or that their cats love them to offer some sort of gratification. I do not think I will need modules for this.
 
 # Backup Idea
 
