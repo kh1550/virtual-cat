@@ -16,7 +16,7 @@ For the more unforunate of us who cannot have a cat, Virtual Cat is here to fill
 ![wireframe](/documentation/wireframe.png)
 
 # Site Map
-pretends pretty map is here
+![sitemap](/documentation/sitemap.png)
 
 # Use Case Diagram
 pretends I know how to do this
