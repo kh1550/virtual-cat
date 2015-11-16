@@ -22,7 +22,8 @@ For the more unforunate of us who cannot have a cat, Virtual Cat is here to fill
 pretends I know how to do this
 
 # Research
-* How to use Socket.io: Socket.io is necessary for real-time chatting between players.
+* Real-time chatting
+..* I would like to add some social interactions so the game doesn't feel too pointless. I will need a way to make an unique url for each player's cat cafe, and restrict vistors to one other player. I'll need to research how to implement a chatbox and share their cats. The module I plan to use for real-time sharing is Socket.io. For the unique URL, I may write up my own function.
 
 # Backup Idea
 
