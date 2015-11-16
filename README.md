@@ -13,7 +13,7 @@ For the more unforunate of us who cannot have a cat, Virtual Cat is here to fill
 * Socket.io
  
 # Wireframes
-pretends pretty pictures are here
+![wireframe](/documentation/wireframe.png)
 
 # Site Map
 pretends pretty map is here
