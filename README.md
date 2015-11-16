@@ -9,6 +9,7 @@ For the more unforunate of us who cannot have a cat, Virtual Cat is here to fill
 * Express
 * Express Handlebars
 * Express Generator
+* Express Session
 * Socket.io
  
 # Wireframes
