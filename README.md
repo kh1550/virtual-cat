@@ -11,7 +11,15 @@ For the more unforunate of us who cannot have a cat, Virtual Cat is here to fill
 * Express Generator
 * Express Session
 * Socket.io
- 
+
+# Data Model
+
+Currently using Mongoose and MongoDB (see db.js for first draft) but I am considering switching to SQLite3 since I feel the data is better suited to a relational database. While MongoDB can handle references to other models, it seems rather improper to relate documents in a NoSQL database. Accessory is a feature I am thinking about adding to differentiate cats in cat cafes.
+
+Models: Accessory, Cat, User
+* users and cats have a one-to-one relationship
+* cats and accessories will have a one-to-many relationship
+
 # Wireframes
 ![wireframe](/documentation/wireframe.png)
 
