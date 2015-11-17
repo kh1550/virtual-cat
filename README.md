@@ -11,6 +11,7 @@ For the more unforunate of us who cannot have a cat, Virtual Cat is here to fill
 * Express Generator
 * Express Session
 * Socket.io
+* Mongoose
 
 # Data Model
 
@@ -27,7 +28,9 @@ Models: Accessory, Cat, User
 ![sitemap](/documentation/sitemap.png)
 
 # Use Case Diagram
-pretends I know how to do this
+As a user, I want to interact with my cat so that I can be amused.
+As a user, I want to name my cat and pick its colour so that my cat can be unique.
+As a user, I want to share my cat cafe URL so that I can show off my cat.
 
 # Research
 * **Real-time chatting** I would like to add some social interactions so the game doesn't feel too pointless. I will need a way to make an unique url for each player's cat cafe, and restrict vistors to one other player. I'll need to research how to implement a chatbox and share their cats. The module I plan to use for real-time sharing is Socket.io. For the unique URL, I may write up my own function.
