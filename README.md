@@ -27,7 +27,7 @@ Models: Accessory, Cat, User
 # Site Map
 ![sitemap](/documentation/sitemap.png)
 
-# Use Case Diagram
+# User Stories
 * As a user, I want to interact with my cat so that I can be amused.
 * As a user, I want to name my cat and pick its colour so that my cat can be unique.
 * As a user, I want to share my cat cafe URL so that I can show off my cat.
