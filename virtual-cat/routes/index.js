@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var mongoose = require('mongoose');
 require('./../db');
 
 var User = mongoose.model('User');
@@ -13,8 +14,10 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req,res,next) {
   User.findOne({name: req.body.username}, function(err,result,count) {
-    console.log(result);
-    res.redirect('play', {user: req.body.username, cat: result});
+    console.log(result._id);
+    req.session.user = result._id;
+    req.session.cat = result.cat;
+    res.redirect('/play');
   });
 });
 
@@ -27,13 +30,17 @@ router.post('/name', function(req, res, next) {
   });
 
   c.save(function(err,cat,count) {
+    console.log("Cat saved: ", cat);
     var u = new User({
       name: req.body.username,
       cat: c._id
     });
 
     u.save(function(err2,user,count2) {
-      res.redirect('play', {user: u.name, cat: cat.name});
+      console.log("User saved: ", user);
+      req.session.user = u._id;
+      req.session.cat = c._id;
+      res.redirect('/play');
     })
   });
 });
@@ -43,8 +50,11 @@ router.get('/name', function(req, res, next) {
 });
 
 router.get('/play', function(req, res, next) {
-  console.log(req.body);
-  res.render('play');
+  if (req.session && req.session.user && req.session.cat) {
+    res.render('play', {user: req.session.user, cat: req.session.cat});
+  } else {
+    res.render('play');
+  }
 });
 
 router.get('/cafe/:cafe_id', function(req, res, next) {

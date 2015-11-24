@@ -48,10 +48,10 @@
 
 
 
-var mongoose = require('mongoose'), URLSlugs = require('mongoose-url-slugs');
+var mongoose = require('mongoose');
 
 var Accessory = new mongoose.Schema({
- item: String
+ item: String,
  image: String
 })
 
