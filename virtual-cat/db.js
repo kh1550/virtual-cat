@@ -60,12 +60,12 @@ var Cat = new mongoose.Schema({
   mood: String,
   hunger: Number,
   thirst: Number,
-  accessory: Accessory
+  accessory: {type: mongoose.Schema.Types.ObjectId, ref: 'Accessory'}
 });
 
 var User = new mongoose.Schema({
  name: String,
- cat: Cat
+ cat: {type: mongoose.Schema.Types.ObjectId, ref: 'Cat'}
 });
 
 //List.plugin(URLSlugs('createdBy name'));
