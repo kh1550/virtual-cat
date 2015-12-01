@@ -62,7 +62,7 @@ a {
 	visibility: hidden;
 }
 
-.stats {
+.stats, .gold-stat {
 	display: block;
 	text-align: left;
 	border-radius: 40px;
@@ -70,7 +70,7 @@ a {
     background-color: #fff;
     border-color: #ccc;
     padding: 6px 12px;
-    margin-top: 40px;
+    margin-top: 0px;
     margin-left: 30px;
     margin-right: 30px;
 }
@@ -93,4 +93,53 @@ a {
 	font-size: 20px;
 	font-weight: bold;
 	width: 150px;
+}
+
+.img-small {
+	display: inline-block;
+	width: 75px;
+	height: 75px;
+}
+
+#cat-name {
+	display: inline;
+}
+
+.stat-mood {
+	display: inline;
+	font-size: 20px;
+	margin-left: 30px;
+}
+
+.gold {
+	padding: 6px 12px;
+    font-weight: 400;
+    line-height: 1;
+    color: #555;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 10px 0px 0px 10px;
+    display: inline-block;
+    margin-right: 0px;
+}
+
+.gold-count {
+	padding-top: 31px;
+    font-weight: 400;
+    line-height: 1;
+    text-align: center;
+    vertical-align: middle;
+    border-top: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0px 10px 10px 0px;
+    width: 670px;
+    display: inline-block;
+    margin-left: -30px;
+    height: 89px;
+    margin-top: -3px;
+}
+
+.gold-stat {
+	margin-top: 10px;
 }

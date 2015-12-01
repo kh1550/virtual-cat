@@ -60,6 +60,7 @@ var Cat = new mongoose.Schema({
   mood: String,
   hunger: Number,
   thirst: Number,
+  energy: Number,
   accessory: {type: mongoose.Schema.Types.ObjectId, ref: 'Accessory'}
 });
 

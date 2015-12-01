@@ -25,8 +25,9 @@ router.post('/name', function(req, res, next) {
   var c = new Cat({
     name: req.body.cat_name,
     mood: "Apathetic",
-    hunger: 5,
-    thirst: 5
+    hunger: 50,
+    thirst: 50,
+    energy: 100
   });
 
   c.save(function(err,cat,count) {
@@ -51,7 +52,9 @@ router.get('/name', function(req, res, next) {
 
 router.get('/play', function(req, res, next) {
   if (req.session && req.session.user && req.session.cat) {
-    res.render('play', {user: req.session.user, cat: req.session.cat});
+    Cat.findOne({_id: req.session.cat}, function (err,result,count){
+      res.render('play', {user: req.session.user, cat: result._id, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, accessory: result.accessory});
+    });
   } else {
     res.render('play');
   }

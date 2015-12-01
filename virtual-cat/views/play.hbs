@@ -11,19 +11,27 @@
   <button class="btn btn-default btn-large" id="milk" disabled>Cat Cafe!</button><button class="btn btn-default btn-upgrade" disabled><i class="glyphicon glyphicon-plus"></i></button>
 
   <div class="stats">
-    <div class="stat" id="mood"><p class="stat-label">Mood</p></div>
+    <h1 id="cat-name">{{name}}</h1><img src="/images/paw_prints.png" class="img-small" />
+    <div class="stat" id="mood"><p class="stat-label">Mood</p> <p class="stat-mood">{{mood}}</p></div>
     <div class="stat" id="hunger"><p class="stat-label">Hunger</p> <div class="progress">
-        <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-          <span class="sr-only">40% Complete (success)</span>
+        <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="{{hunger}}" aria-valuemin="0" aria-valuemax="100" style="width: {{hunger}}%">
         </div>
       </div>
     </div>
     <div class="stat" id="thirst"><p class="stat-label">Thirst</p> <div class="progress">
-        <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-          <span class="sr-only">20% Complete</span>
+        <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="{{thirst}}" aria-valuemin="0" aria-valuemax="100" style="width: {{thirst}}%">
         </div>
       </div>
     </div>
+    <div class="stat" id="energy"><p class="stat-label">Energy</p> <div class="progress">
+        <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="{{energy}}" aria-valuemin="0" aria-valuemax="100" style="width: {{energy}}%">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gold-stat">
+    <span class="gold"><p class="stat-label"><img src="/images/gold.png" class="img-small"> Gold</p></span><p class="stat-mood">{{money}}</p><span class="gold-count"><p class="stat-mood">0</p></span>
   </div>
 </div>
 
