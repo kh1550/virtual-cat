@@ -13,6 +13,9 @@
     "hbs": "~3.1.0",
     "morgan": "~1.6.1",
     "serve-favicon": "~2.3.0",
-    "express-session": "~1.12.1"
+    "express-session": "~1.12.1",
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.6",
+    "jQuery": "~1.7.4"
   }
 }
