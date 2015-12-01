@@ -6,3 +6,25 @@ body {
 a {
   color: #00B7FF;
 }
+
+.background {
+	position: absolute; 
+	top: -60px; 
+	left: -60px;
+	width: 890px;
+	height: 890px;
+}
+
+.cat {
+	position: relative; 
+	top: 225px; 
+	left: 120px;
+	max-width: 480px;
+	max-height: 660px;
+}
+
+.view {
+	position: relative; 
+	left: 0; 
+	top: 0;
+}
