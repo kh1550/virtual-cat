@@ -52,7 +52,8 @@ var mongoose = require('mongoose');
 
 var Accessory = new mongoose.Schema({
  item: String,
- image: String
+ image: String,
+ cost: Number
 })
 
 var Cat = new mongoose.Schema({
@@ -66,6 +67,7 @@ var Cat = new mongoose.Schema({
 
 var User = new mongoose.Schema({
  name: String,
+ gold: Number,
  cat: {type: mongoose.Schema.Types.ObjectId, ref: 'Cat'}
 });
 

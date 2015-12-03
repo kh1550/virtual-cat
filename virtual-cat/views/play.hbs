@@ -3,12 +3,14 @@
   <img src="/images/cat.png" class="cat" />
 </div>
 <div class="actions">
-  <button class="btn btn-default btn-large" id="work">Work!</button><button class="btn btn-default btn-upgrade"><i class="glyphicon glyphicon-plus"></i></button>
-  <button class="btn btn-default btn-large" id="toy">Toy!</button><button class="btn btn-default btn-upgrade"><i class="glyphicon glyphicon-plus"></i></button>
-  <button class="btn btn-default btn-large" id="treat">Treat!</button><button class="btn btn-default btn-upgrade"><i class="glyphicon glyphicon-plus"></i></button>
-  <button class="btn btn-default btn-large" id="cuddle">Cuddle!</button><button class="btn btn-default btn-upgrade"><i class="glyphicon glyphicon-plus"></i></button>
-  <button class="btn btn-default btn-large" id="milk">Milk!</button><button class="btn btn-default btn-upgrade"><i class="glyphicon glyphicon-plus"></i></button>
-  <button class="btn btn-default btn-large" id="milk" disabled>Cat Cafe!</button><button class="btn btn-default btn-upgrade" disabled><i class="glyphicon glyphicon-plus"></i></button>
+  <form method="POST">
+    <input class="btn btn-default btn-large" name="work" type="submit" value="Work!"><input class="btn btn-default btn-upgrade" name="work-upgrade" value="+" type="submit">
+    <input class="btn btn-default btn-large" name="toy" type="submit" value="Toy!"><input class="btn btn-default btn-upgrade" name="toy-upgrade" value="+" type="submit">
+    <input class="btn btn-default btn-large" name="treat" type="submit" value="Treat!"><input class="btn btn-default btn-upgrade" name="treat-upgrade" value="+" type="submit">
+    <input class="btn btn-default btn-large" name="cuddle" type="submit" value="Cuddle!"><input class="btn btn-default btn-upgrade" name="cuddle-upgrade" value="+" type="submit">
+    <input class="btn btn-default btn-large" name="milk" type="submit" value="Milk!"><input class="btn btn-default btn-upgrade" name="milk-upgrade" value="+" type="submit">
+    <input class="btn btn-default btn-large" name="cafe" type="submit" value="Cat Cafe!" disabled><input class="btn btn-default btn-upgrade" name="gen-url" value="+" type="submit" disabled>
+  </form>
 
   <div class="stats">
     <h1 id="cat-name">{{name}}</h1><img src="/images/paw_prints.png" class="img-small" />
@@ -31,7 +33,8 @@
   </div>
 
   <div class="gold-stat">
-    <span class="gold"><p class="stat-label"><img src="/images/gold.png" class="img-small"> Gold</p></span><p class="stat-mood">{{money}}</p><span class="gold-count"><p class="stat-mood">0</p></span>
+    <span class="gold"><p class="stat-label"><img src="/images/gold.png" class="img-small"> Gold</p></span><span class="gold-count"><p class="stat-mood">{{gold}}</p></span>
   </div>
 </div>
 
+<script src="/javascripts/game.js"></script>

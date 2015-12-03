@@ -34,10 +34,11 @@ router.post('/name', function(req, res, next) {
     console.log("Cat saved: ", cat);
     var u = new User({
       name: req.body.username,
+      gold: 0,
       cat: c._id
     });
 
-    u.save(function(err2,user,count2) {
+    u.save(function (err2,user,count2) {
       console.log("User saved: ", user);
       req.session.user = u._id;
       req.session.cat = c._id;
@@ -52,11 +53,176 @@ router.get('/name', function(req, res, next) {
 
 router.get('/play', function(req, res, next) {
   if (req.session && req.session.user && req.session.cat) {
-    Cat.findOne({_id: req.session.cat}, function (err,result,count){
-      res.render('play', {user: req.session.user, cat: result._id, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, accessory: result.accessory});
+    User.findOne({_id: req.session.user}, function (err,user,count) {
+      Cat.findOne({_id: req.session.cat}, function (err,result,count){
+        res.render('play', {user: req.session.user, gold: user.gold, cat: result._id, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, accessory: result.accessory});
+      });
     });
   } else {
     res.render('play');
+  }
+});
+
+router.post('/play', function(req, res, next) {
+  console.log(req.body, req.session);
+  if (req.body.work) {
+    console.log("Working!");
+    User.findOne({_id: req.session.user}, function (err,u,count) {
+      u.gold += 100;
+      u.save(function (err2,user,count2) {
+        Cat.findOne({_id: req.session.cat}, function (err3,cat,count3) {
+          if (cat.energy > 0) { cat.energy -= 5; } else { cat.energy = 0; }
+          if (cat.thirst > 0) { cat.thirst -= 5; } else { cat.thirst = 0; }
+          if (cat.hunger > 0) { cat.hunger -= 5; } else { cat.hunger = 0; }
+          if (cat.energy < 20 && cat.hunger < 40 && cat.thirst < 40) { mood = "Angry"; }
+          if (cat.energy < 20) { cat.mood = "Tired"; }
+          else if (cat.hunger < 40) { cat.mood = "Hungry"; }
+          else if (cat.thirst < 40) { cat.mood = "Thirsty"; }
+          else {
+            var random = Math.floor(Math.random() * 3);
+            switch (random) {
+              case 0: cat.mood = "Bored"; break;
+              case 1: cat.mood = "Apathetic"; break;
+              case 2: cat.mood = "Content"; break;
+            }
+          }
+          cat.save(function (err4,result,count4) {
+            res.render('play', {user: user._id, gold: user.gold, cat: result._id, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, accessory: result.accessory});
+          });
+        });
+      });
+    });
+  } else if (req.body.treat) {
+    console.log("Eating!");
+    User.findOne({_id: req.session.user}, function (err,u,count) {
+      if (u.gold >= 25) {
+        u.gold -= 25;
+        u.save(function (err2,user,count2) {
+          Cat.findOne({_id: req.session.cat}, function (err3,cat,count3) {
+            cat.hunger += 20;
+            if (cat.hunger > 100) { cat.hunger = 100; }
+            if (cat.energy > 0) { cat.energy -= 5; } else { cat.energy = 0; }
+            if (cat.thirst > 0) { cat.thirst -= 5; } else { cat.thirst = 0; }
+            if (cat.energy < 20 && cat.hunger < 40 && cat.thirst < 40) { mood = "Angry"; }
+            if (cat.energy < 20) { cat.mood = "Tired"; }
+            else if (cat.hunger < 40) { cat.mood = "Hungry"; }
+            else if (cat.thirst < 40) { cat.mood = "Thirsty"; }
+            else {
+              var random = Math.floor(Math.random() * 3);
+              switch (random) {
+                case 0: cat.mood = "Bored"; break;
+                case 1: cat.mood = "Apathetic"; break;
+                case 2: cat.mood = "Content"; break;
+              }
+            }
+            cat.save(function (err4,result,count4) {
+              res.render('play', {user: user._id, gold: user.gold, cat: result._id, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, accessory: result.accessory});
+            });
+          });
+        });
+      } else {
+        Cat.findOne({_id: req.session.cat}, function (err3,result,count3) {
+          res.render('play', {user: u._id, gold: u.gold, cat: result._id, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, accessory: result.accessory});
+        });
+      }
+    });
+  } else if (req.body.toy) {
+    console.log("Playing!");
+    User.findOne({_id: req.session.user}, function (err,u,count) {
+      if (u.gold >= 50) { 
+        u.gold -= 50;
+        u.save(function (err2,user,count2) {
+          Cat.findOne({_id: req.session.cat}, function (err3,cat,count3) {
+            if (cat.energy > 0) { cat.energy -= 5; } else { cat.energy = 0; }
+            if (cat.thirst > 0) { cat.thirst -= 5; } else { cat.thirst = 0; }
+            if (cat.hunger > 0) { cat.hunger -= 5; } else { cat.hunger = 0; }
+            if (cat.energy < 20 && cat.hunger < 40 && cat.thirst < 40) { mood = "Angry"; }
+            else if (cat.energy < 20) { cat.mood = "Tired"; }
+            else if (cat.hunger < 40) { cat.mood = "Hungry"; }
+            else if (cat.thirst < 40) { cat.mood = "Thirsty"; }
+            else { cat.mood = "Pleased"; }
+            cat.save(function (err4,result,count4) {
+              res.render('play', {user: user._id, gold: user.gold, cat: result._id, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, accessory: result.accessory});
+            });
+          });
+        });
+      } else {
+        Cat.findOne({_id: req.session.cat}, function (err3,result,count3) {
+          res.render('play', {user: u._id, gold: u.gold, cat: result._id, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, accessory: result.accessory});
+        });
+      }
+    });
+  } else if (req.body.cuddle) {
+    console.log("Sleeping!");
+    User.findOne({_id: req.session.user}, function (err,user,count) {
+      Cat.findOne({_id: req.session.cat}, function (err3,cat,count3) {
+        cat.energy += 30;
+        if (cat.energy > 100) { cat.energy = 100; }
+        if (cat.thirst > 0) { cat.thirst -= 5; } else { cat.thirst = 0; }
+        if (cat.hunger > 0) { cat.hunger -= 5; } else { cat.hunger = 0; }
+        if (cat.energy < 20 && cat.hunger < 40 && cat.thirst < 40) { mood = "Angry"; }
+        else if (cat.hunger < 40) { cat.mood = "Hungry"; }
+        else if (cat.thirst < 40) { cat.mood = "Thirsty"; }
+        else {
+          var random = Math.floor(Math.random() * 3);
+          switch (random) {
+            case 0: cat.mood = "Bored"; break;
+            case 1: cat.mood = "Apathetic"; break;
+            case 2: cat.mood = "Content"; break;
+          }
+        }
+        cat.save(function (err4,result,count4) {
+          res.render('play', {user: user._id, gold: user.gold, cat: result._id, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, accessory: result.accessory});
+        });
+      });
+    });
+  } else if (req.body.milk) {
+    console.log("Drinking!");
+    User.findOne({_id: req.session.user}, function (err,u,count) {
+      if (u.gold >= 25) { 
+        u.gold -= 25;
+        u.save(function (err2,user,count2) {
+          Cat.findOne({_id: req.session.cat}, function (err3,cat,count3) {
+            cat.thirst += 20;
+            if (cat.thirst > 100) { cat.thirst = 100; }
+            if (cat.energy > 0) { cat.energy -= 5; } else { cat.energy = 0; }
+            if (cat.hunger > 0) { cat.hunger -= 5; } else { cat.hunger = 0; }
+            if (cat.energy < 20 && cat.hunger < 40 && cat.thirst < 40) { mood = "Angry"; }
+            else if (cat.energy < 20) { cat.mood = "Tired"; }
+            else if (cat.hunger < 40) { cat.mood = "Hungry"; }
+            else if (cat.thirst < 40) { cat.mood = "Thirsty"; }
+            else {
+              var random = Math.floor(Math.random() * 3);
+              switch (random) {
+                case 0: cat.mood = "Bored"; break;
+                case 1: cat.mood = "Apathetic"; break;
+                case 2: cat.mood = "Content"; break;
+              }
+            }
+            cat.save(function (err4,result,count4) {
+              res.render('play', {user: user._id, gold: user.gold, cat: result._id, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, accessory: result.accessory});
+            });
+          });
+        });
+      } else {
+        Cat.findOne({_id: req.session.cat}, function (err3,result,count3) {
+          res.render('play', {user: u._id, gold: u.gold, cat: result._id, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, accessory: result.accessory});
+        });
+      }
+    });
+  } else if (req.body.cafe) {
+    console.log("Cafes are currently closed!");
+    User.findOne({_id: req.session.user}, function (err,user,count) {
+      Cat.findOne({_id: req.session.cat}, function (err3,result,count3) {
+        res.render('play', {user: user._id, gold: user.gold, cat: result._id, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, accessory: result.accessory});
+      });
+    });
+  } else {
+    User.findOne({_id: req.session.user}, function (err,user,count) {
+      Cat.findOne({_id: req.session.cat}, function (err3,result,count3) {
+        res.render('play', {user: user._id, gold: user.gold, cat: result._id, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, accessory: result.accessory});
+      });
+    });
   }
 });
 
