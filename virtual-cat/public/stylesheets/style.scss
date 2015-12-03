@@ -1,0 +1,156 @@
+@import 'bootstrap.min.css';
+
+@font-face {
+	font-family: "Cookies";
+	src: url('../fonts/Cookies.ttf');
+}
+
+$font-stack: "Cookies", Helvetica, Arial, sans-serif;
+
+body {
+  font-family: $font-stack;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.background {
+	position: absolute; 
+	top: 0px; 
+	left: 0px;
+	width: 890px;
+	height: 885px;
+}
+
+.cat {
+	position: relative; 
+	top: 270px; 
+	left: 150px;
+	max-width: 480px;
+	max-height: 660px;
+}
+
+.view {
+	position: relative; 
+	left: 0; 
+	top: 0;
+}
+
+.actions {
+	position: absolute;
+	top: 0;
+	left: 890px;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	text-align: center;
+}
+
+.btn-large {
+	height: 200px;
+	width: 200px;
+	margin-left: 20px;
+	margin-bottom: 30px;
+	font-size: 24px;
+	border-radius: 50px;
+}
+
+.btn-upgrade {
+	margin-left: 5px;
+	margin-right: 30px;
+	border-radius: 10px;
+	padding-left: 11px;
+	height: 40px;
+	width: 40px;
+    top: 1px;
+    font-size: 18px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+}
+
+.hidden {
+	visibility: hidden;
+}
+
+.stats, .gold-stat {
+	display: block;
+	text-align: left;
+	border-radius: 40px;
+	color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+    padding: 6px 12px;
+    margin-top: 0px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.stat {
+	display: block;
+	margin-bottom: 20px;
+}
+
+.progress {
+	width: 83%;
+	display: inline-block;
+	vertical-align: text-bottom;
+    margin-left: 30px;
+    margin-bottom: 0px;
+}
+
+.stat-label {
+	display: inline-block;
+	font-size: 20px;
+	font-weight: bold;
+	width: 100px;
+}
+
+.img-small {
+	display: inline-block;
+	width: 75px;
+	height: 75px;
+}
+
+#cat-name {
+	display: inline;
+}
+
+.stat-mood {
+	display: inline;
+	font-size: 20px;
+	margin-left: 30px;
+}
+
+.gold {
+	padding: 6px 12px;
+    font-weight: 400;
+    line-height: 1;
+    color: #555;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    border-radius: 10px 0px 0px 10px;
+    display: inline-block;
+    margin-right: 0px;
+}
+
+.gold-count {
+	padding-top: 31px;
+    font-weight: 400;
+    line-height: 1;
+    text-align: center;
+    vertical-align: middle;
+    border-top: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-radius: 0px 10px 10px 0px;
+    width: 85%;
+    display: inline-block;
+    margin-left: -30px;
+    height: 89px;
+    margin-top: -4px;
+}
