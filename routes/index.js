@@ -14,7 +14,6 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req,res,next) {
   User.findOne({name: req.body.username}, function(err,result,count) {
-    console.log(result._id);
     req.session.user = result._id;
     req.session.cat = result.cat;
     res.redirect('/play');
