@@ -1,0 +1,6 @@
+<button class="btn btn-default btn-large" id="work">Work!</button><button class="btn btn-default btn-upgrade"><i class="glyphicon glyphicon-plus"></i></button>
+  <button class="btn btn-default btn-large" id="toy">Toy!</button><button class="btn btn-default btn-upgrade"><i class="glyphicon glyphicon-plus"></i></button>
+  <button class="btn btn-default btn-large" id="treat">Treat!</button><button class="btn btn-default btn-upgrade"><i class="glyphicon glyphicon-plus"></i></button>
+  <button class="btn btn-default btn-large" id="cuddle">Cuddle!</button><button class="btn btn-default btn-upgrade"><i class="glyphicon glyphicon-plus"></i></button>
+  <button class="btn btn-default btn-large" id="milk">Milk!</button><button class="btn btn-default btn-upgrade"><i class="glyphicon glyphicon-plus"></i></button>
+  <button class="btn btn-default btn-large" id="cafe" disabled>Cat Cafe!</button><button class="btn btn-default btn-upgrade" disabled><i class="glyphicon glyphicon-plus"></i></button>
