@@ -50,15 +50,20 @@ router.get('/name', function(req, res, next) {
   res.render('name');
 });
 
+router.get('/play/no_cat_found', function(req,res,next) {
+  res.render('nocat');
+});
+
 router.get('/play', function(req, res, next) {
   if (req.session && req.session.user && req.session.cat) {
     User.findOne({_id: req.session.user}, function (err,user,count) {
       Cat.findOne({_id: req.session.cat}, function (err,result,count){
+        if (user == undefined || result == undefined) { res.redirect('/play/no_cat_found'); }
         res.render('play', {user: req.session.user, gold: user.gold, cat: result._id, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, accessory: result.accessory});
       });
     });
   } else {
-    res.render('play');
+    res.redirect('/play/no_cat_found');
   }
 });
 
