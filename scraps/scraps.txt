@@ -4,3 +4,25 @@
   <button class="btn btn-default btn-large" id="cuddle">Cuddle!</button><button class="btn btn-default btn-upgrade"><i class="glyphicon glyphicon-plus"></i></button>
   <button class="btn btn-default btn-large" id="milk">Milk!</button><button class="btn btn-default btn-upgrade"><i class="glyphicon glyphicon-plus"></i></button>
   <button class="btn btn-default btn-large" id="cafe" disabled>Cat Cafe!</button><button class="btn btn-default btn-upgrade" disabled><i class="glyphicon glyphicon-plus"></i></button>
+
+  <span class="gold"><p class="stat-label label-gold"><img src="/images/gold.png" class="img-small"> Gold</p></span><span class="gold-count"><p class="stat-mood">{{gold}}</p></span>
+
+
+  
+.stats-OLD {
+	display: block;
+	text-align: left;
+	border-radius: 40px;
+	color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+    padding: 6px 12px;
+    margin-top: -10px;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.stat-OLD {
+	display: block;
+	margin-bottom: 5px;
+}

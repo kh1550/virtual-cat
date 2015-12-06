@@ -3,36 +3,67 @@
   <img src="/images/cat.png" class="cat" />
 </div>
 <div class="actions">
-  <form method="POST">
-    <input class="btn btn-default btn-large" name="work" type="submit" value="Work!"><input class="btn btn-default btn-upgrade" name="work-upgrade" value="+" type="submit">
-    <input class="btn btn-default btn-large" name="toy" type="submit" value="Toy!"><input class="btn btn-default btn-upgrade" name="toy-upgrade" value="+" type="submit">
-    <input class="btn btn-default btn-large" name="treat" type="submit" value="Treat!"><input class="btn btn-default btn-upgrade" name="treat-upgrade" value="+" type="submit">
-    <input class="btn btn-default btn-large" name="cuddle" type="submit" value="Cuddle!"><input class="btn btn-default btn-upgrade" name="cuddle-upgrade" value="+" type="submit">
-    <input class="btn btn-default btn-large" name="milk" type="submit" value="Milk!"><input class="btn btn-default btn-upgrade" name="milk-upgrade" value="+" type="submit">
-    <input class="btn btn-default btn-large" name="cafe" type="submit" value="Cat Cafe!" disabled><input class="btn btn-default btn-upgrade" name="gen-url" value="+" type="submit" disabled>
-  </form>
-
-  <div class="stats">
-    <h1 id="cat-name">{{name}}</h1><img src="/images/paw_prints.png" class="img-small" />
-    <div class="stat" id="mood"><p class="stat-label">Mood</p> <p class="stat-mood">{{mood}}</p></div>
-    <div class="stat" id="hunger"><p class="stat-label">Hunger</p> <div class="progress">
-        <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="{{hunger}}" aria-valuemin="0" aria-valuemax="100" style="width: {{hunger}}%">
-        </div>
-      </div>
-    </div>
-    <div class="stat" id="thirst"><p class="stat-label">Thirst</p> <div class="progress">
-        <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="{{thirst}}" aria-valuemin="0" aria-valuemax="100" style="width: {{thirst}}%">
-        </div>
-      </div>
-    </div>
-    <div class="stat" id="energy"><p class="stat-label">Energy</p> <div class="progress">
-        <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="{{energy}}" aria-valuemin="0" aria-valuemax="100" style="width: {{energy}}%">
-        </div>
-      </div>
-    </div>
+  <div class="div-wrap">
+    <form method="POST">
+      <input class="btn btn-default btn-large" name="work" type="submit" value="Work!"><input class="btn btn-default btn-upgrade" name="work-upgrade" value="+" type="submit">
+      <input class="btn btn-default btn-large" name="toy" type="submit" value="Toy!"><input class="btn btn-default btn-upgrade" name="toy-upgrade" value="+" type="submit">
+      <input class="btn btn-default btn-large" name="treat" type="submit" value="Treat!"><input class="btn btn-default btn-upgrade" name="treat-upgrade" value="+" type="submit">
+      <input class="btn btn-default btn-large" name="cuddle" type="submit" value="Cuddle!"><input class="btn btn-default btn-upgrade" name="cuddle-upgrade" value="+" type="submit">
+      <input class="btn btn-default btn-large" name="milk" type="submit" value="Milk!"><input class="btn btn-default btn-upgrade" name="milk-upgrade" value="+" type="submit">
+      <input class="btn btn-default btn-large" name="cafe" type="submit" value="Cat Cafe!" disabled><input class="btn btn-default btn-upgrade" name="gen-url" value="+" type="submit" disabled>
+    </form>
   </div>
 
-  <div class="gold-stat">
-    <span class="gold"><p class="stat-label label-gold"><img src="/images/gold.png" class="img-small"> Gold</p></span><span class="gold-count"><p class="stat-mood">{{gold}}</p></span>
+
+  <div class="stats div-wrap">
+    <h1 id="cat-name">{{name}}</h1><img src="/images/paw_prints.png" class="img-small" />
+    <table>
+      <thead></thead>
+      <tbody>
+        <tr class="stat" id="mood">
+          <td class="stat-label"><p class="stat-label">Mood</p></td> 
+          <td class="stat-text">{{mood}}</td>
+        </tr>
+        <tr class="stat" id="hunger">
+          <td class="stat-label"><p class="stat-label">Hunger</p></td>
+          <td class="stat-progress">
+            <div class="progress">
+              <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuenow="{{hunger}}" aria-valuemin="0" aria-valuemax="100" style="width: {{hunger}}%">
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr class="stat" id="thirst">
+          <td class="stat-label"><p class="stat-label">Thirst</p></td>
+          <td class="stat-progress">
+            <div class="progress">
+              <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="{{thirst}}" aria-valuemin="0" aria-valuemax="100" style="width: {{thirst}}%">
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr class="stat" id="energy">
+          <td class="stat-label"><p class="stat-label">Energy</p></td>
+          <td class="stat-progress">
+            <div class="progress">
+              <div class="progress-bar progress-bar-warning progress-bar-striped active" role="progressbar" aria-valuenow="{{energy}}" aria-valuemin="0" aria-valuemax="100" style="width: {{energy}}%">
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gold-stat div-wrap">
+    <table>
+      <thead></thead>
+      <tbody>
+        <tr class="gold-row">
+          <td class="stat-label gold-label"><img src="/images/gold.png" class="img-small"> Gold</td>
+          <td class="stat-mood">{{gold}}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
