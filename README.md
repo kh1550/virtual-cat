@@ -18,9 +18,13 @@ For the more unforunate of us who cannot have a cat, Virtual Cat is here to fill
 
 # Requirements
 (3) User Authentication
+
 (2) Client Side Validator => Validate
+
 (1) CSS Framework         => Bootstrap
+
 (1) CSS Preprocessor      => Sass
+
 (1) Express Templates     => Express Generator
 
 # Data Model
