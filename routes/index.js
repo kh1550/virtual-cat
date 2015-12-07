@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
+var passport = require('passport');
 require('./../db');
 
 var User = mongoose.model('User');
@@ -16,22 +17,32 @@ router.post('/', function(req,res,next) {
   req.on('data', function(chunk) {
     var formdata = chunk.toString();
     console.log("Attempting to sign in... ", formdata);
-    User.findOne({name: formdata}, function(err,result,count) {
-      if (result == undefined) {
-        console.log("Not Found!");
-        res.setHeader('Content-Type', 'text/html');
-        res.writeHead(302);
-        res.end();
+    passport.authenticate('local', function(err,user) {
+      console.log(err);
+      if (user) {
+        req.logIn(user, function(err) {
+          console.log("User received: ", user);
+          User.findOne({username: formdata}, function(err,result,count) {
+            if (result == undefined) {
+              console.log("Not Found!");
+              res.setHeader('Content-Type', 'text/html');
+              res.writeHead(302);
+              res.end();
+            } else {
+              console.log("Found!");
+              req.session.user = result._id;
+              req.session.cat = result.cat;
+              res.setHeader('Content-Type', 'text/html');
+              res.writeHead(200);
+              res.end();
+            }
+          });
+        });
       } else {
-        console.log("Found!");
-        req.session.user = result._id;
-        req.session.cat = result.cat;
-        res.setHeader('Content-Type', 'text/html');
-        res.writeHead(200);
-        res.end();
+        res.render('/', {message: "Your username or password is incorrect."});
       }
-    });
-  })
+    })(res,req,next);
+  });
 });
 
 router.post('/name', function(req, res, next) {
@@ -44,19 +55,20 @@ router.post('/name', function(req, res, next) {
   });
 
   c.save(function(err,cat,count) {
-    console.log("Cat saved: ", cat);
-    var u = new User({
-      name: req.body.username,
-      gold: 0,
-      cat: c._id
+    console.log("Cat saved: ", cat, req.body.cat_name);
+    console.log("User to register: ", req.body.username);
+    User.register(new User({username: req.body.username, gold: 0, cat: c._id}),req.body.password,function (err,user) {
+      if (err) {
+        console.log(err);
+        res.render('name', {message: "Your username or password is already taken."});
+      } else {
+        passport.authenticate('local')(req,res,function() {
+          req.session.user = user._id;
+          req.session.cat = c._id;
+          res.redirect('/play');
+        });
+      }
     });
-
-    u.save(function (err2,user,count2) {
-      console.log("User saved: ", user);
-      req.session.user = u._id;
-      req.session.cat = c._id;
-      res.redirect('/play');
-    })
   });
 });
 
@@ -73,6 +85,7 @@ router.get('/play', function(req, res, next) {
     User.findOne({_id: req.session.user}, function (err,user,count) {
       Cat.findOne({_id: req.session.cat}, function (err,result,count){
         if (user == undefined || result == undefined) { res.redirect('/play/no_cat_found'); }
+        console.log("Cat: ", result);
         res.render('play', {user: req.session.user, gold: user.gold, cat: result._id, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, accessory: result.accessory});
       });
     });

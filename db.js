@@ -5,6 +5,7 @@
 //
 
 var mongoose = require('mongoose');
+var passportLocalMongoose = require('passport-local-mongoose');
 
 var Accessory = new mongoose.Schema({
  item: String,
@@ -22,10 +23,12 @@ var Cat = new mongoose.Schema({
 });
 
 var User = new mongoose.Schema({
- name: String,
+ username: String,
  gold: Number,
  cat: {type: mongoose.Schema.Types.ObjectId, ref: 'Cat'}
 });
+
+User.plugin(passportLocalMongoose);
 
 mongoose.model('User', User);
 mongoose.model('Cat', Cat);
