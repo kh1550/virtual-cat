@@ -78,15 +78,14 @@ a {
 }
 
 .btn-large {
-	height: 5%;
-	width: 5%;
-	min-height: 125px;
-	min-width: 125px;
-	margin-left: 20px;
-	margin-bottom: 1%;
+	height: 175px;
+	width: 175px;
 	font-size: 24px;
 	border-radius: 25%;
 	word-wrap: break-word;
+	&:active {
+		border: none;
+	}
 }
 
 .btn-upgrade {
@@ -146,44 +145,35 @@ td.stat-text {
 	vertical-align: text-bottom;
 }
 
-.gold {
-	padding: 6px 12px;
+div.gold-count {
+    font-size: 20px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 0 10px 10px 0;
+    width: 100%;
+    height: 89px;
+    background-color: #FFF;
+}
+
+.gold-label {
+	width: 200px;
     font-weight: 400;
     line-height: 1;
     color: #555;
     background-color: #eee;
-    border: 1px solid #ccc;
-    border-radius: 10px 0px 0px 10px;
-    display: inline-block;
-    margin-right: 0px;
-    height: 0.1%;
-}
-
-.gold-count {
-	padding-top: 31px;
-    font-weight: 400;
-    line-height: 1;
-    text-align: center;
-    vertical-align: middle;
     border-top: 1px solid #ccc;
-    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
-    border-radius: 0px 10px 10px 0px;
-    width: 82%;
-    display: inline-block;
-    margin-left: -30px;
-    height: 89px;
-    margin-top: -4px;
+    border-radius: 10px 0 0 10px;
 }
 
-.gold-label {
-	width: 150px;
-	margin-bottom: 0px;
+.img-gold {
+	width: 60px;
+	height: 75px;
 }
 
-.gold-stat {
-	@extend .stats !optional;
-	margin-top: 0px;
+.gold-row {
+    height: 100px;
 }
 
 table {
@@ -218,4 +208,8 @@ td.stat-label {
 
 .btn-go-line {
 	color: black;
+}
+
+table.space {
+	margin-bottom: 5%;
 }

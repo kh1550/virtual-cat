@@ -1,0 +1,25 @@
+/*
+Errno::ENOENT: No such file or directory @ rb_sysopen - public/views/style.scss
+
+Backtrace:
+/home/kristin/.rvm/gems/ruby-2.2.1/gems/sass-3.4.18/lib/sass/plugin/compiler.rb:482:in `read'
+/home/kristin/.rvm/gems/ruby-2.2.1/gems/sass-3.4.18/lib/sass/plugin/compiler.rb:482:in `update_stylesheet'
+/home/kristin/.rvm/gems/ruby-2.2.1/gems/sass-3.4.18/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
+/home/kristin/.rvm/gems/ruby-2.2.1/gems/sass-3.4.18/lib/sass/plugin/compiler.rb:209:in `each'
+/home/kristin/.rvm/gems/ruby-2.2.1/gems/sass-3.4.18/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
+/home/kristin/.rvm/gems/ruby-2.2.1/gems/sass-3.4.18/lib/sass/plugin/compiler.rb:293:in `watch'
+/home/kristin/.rvm/gems/ruby-2.2.1/gems/sass-3.4.18/lib/sass/plugin.rb:108:in `method_missing'
+/home/kristin/.rvm/gems/ruby-2.2.1/gems/sass-3.4.18/lib/sass/exec/sass_scss.rb:384:in `watch_or_update'
+/home/kristin/.rvm/gems/ruby-2.2.1/gems/sass-3.4.18/lib/sass/exec/sass_scss.rb:51:in `process_result'
+/home/kristin/.rvm/gems/ruby-2.2.1/gems/sass-3.4.18/lib/sass/exec/base.rb:52:in `parse'
+/home/kristin/.rvm/gems/ruby-2.2.1/gems/sass-3.4.18/lib/sass/exec/base.rb:19:in `parse!'
+/home/kristin/.rvm/gems/ruby-2.2.1/gems/sass-3.4.18/bin/sass:13:in `<top (required)>'
+/home/kristin/.rvm/gems/ruby-2.2.1/bin/sass:23:in `load'
+/home/kristin/.rvm/gems/ruby-2.2.1/bin/sass:23:in `<main>'
+/home/kristin/.rvm/gems/ruby-2.2.1/bin/ruby_executable_hooks:15:in `eval'
+/home/kristin/.rvm/gems/ruby-2.2.1/bin/ruby_executable_hooks:15:in `<main>'
+*/
+body:before {
+  white-space: pre;
+  font-family: monospace;
+  content: "Errno::ENOENT: No such file or directory @ rb_sysopen - public/views/style.scss"; }

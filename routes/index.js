@@ -14,9 +14,13 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req,res,next) {
   User.findOne({name: req.body.username}, function(err,result,count) {
-    req.session.user = result._id;
-    req.session.cat = result.cat;
-    res.redirect('/play');
+    if (result == undefined) {
+      res.redirect('/play/no_cat_found');
+    } else {
+      req.session.user = result._id;
+      req.session.cat = result.cat;
+      res.redirect('/play');
+    }
   });
 });
 
