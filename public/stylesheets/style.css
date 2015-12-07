@@ -177,4 +177,7 @@ td.stat-label {
 table.space {
   margin-bottom: 5%; }
 
+.red {
+  border: 3px solid red; }
+
 /*# sourceMappingURL=style.css.map */

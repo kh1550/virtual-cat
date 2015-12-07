@@ -26,3 +26,62 @@
 	display: block;
 	margin-bottom: 5px;
 }
+
+
+<!--script type="text/javascript" src="/public/javascripts/validator.min.js"></script>-->
+<script type="text/javascript" src="//cdjns.cloudflare.com/ajax/libs/validate.js/0.9.0/validate.min.js"></script>
+<script type="text/javascript">
+  function validate() {
+    var username = document.getElementById("username");
+    var cat_name = document.getElementById("cat");
+    if(!validator.isAlphanumeric(username.value) && !validator.isAlpha(cat_name.value)) {
+      username.className = "btn-go-line red";
+      cat_name.className = "btn-go-line red";
+      return false;
+      console.log("Bad cat and usernames.");
+    } else if(!validator.isAlphanumeric(username.value)) {
+      username.className = "btn-go-line red";
+      return false;
+      console.log("Bad username.");
+    } else if(!validator.isAlpha(cat_name)) {
+      cat_name.className = "btn-go-line red";
+      return false;
+      console.log("Bad cat name.");
+    } else {
+      return true;
+    }
+  }
+</script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js" type="text/javascript"></script>
+<script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#create-form').validate(
+      {
+        rules:
+        {
+          username:
+          {
+            required: true,
+            alphanumeric: true
+          },
+          cat_name:
+          {
+            required: true,
+            alpha: true
+          }
+        },
+        messages:
+        {
+          username:
+          {
+            required: "Please enter a valid username."
+          },
+          cat_name:
+          {
+            required: "Please enter a valid cat name."
+          }
+        }
+      });
+  })
