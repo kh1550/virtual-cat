@@ -13,15 +13,25 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req,res,next) {
-  User.findOne({name: req.body.username}, function(err,result,count) {
-    if (result == undefined) {
-      res.redirect('/play/no_cat_found');
-    } else {
-      req.session.user = result._id;
-      req.session.cat = result.cat;
-      res.redirect('/play');
-    }
-  });
+  req.on('data', function(chunk) {
+    var formdata = chunk.toString();
+    console.log("Attempting to sign in... ", formdata);
+    User.findOne({name: formdata}, function(err,result,count) {
+      if (result == undefined) {
+        console.log("Not Found!");
+        res.setHeader('Content-Type', 'text/html');
+        res.writeHead(302);
+        res.end();
+      } else {
+        console.log("Found!");
+        req.session.user = result._id;
+        req.session.cat = result.cat;
+        res.setHeader('Content-Type', 'text/html');
+        res.writeHead(200);
+        res.end();
+      }
+    });
+  })
 });
 
 router.post('/name', function(req, res, next) {
