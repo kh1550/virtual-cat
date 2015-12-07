@@ -17,11 +17,11 @@
       name: 'username',
       rules: 'required|alpha_numeric'
   }, {
-      name: 'cat name',
-      rules: 'required|alpha_numeric'
+      name: 'cat_name',
+      rules: 'required|alpha'
   }], function(errors, event) {
       if (errors.length > 0) {
-          console.log(errors);
+          alert(errors[0].message);
       }
   });
 </script>
