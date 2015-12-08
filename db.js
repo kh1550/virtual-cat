@@ -32,4 +32,5 @@ User.plugin(passportLocalMongoose);
 mongoose.model('User', User);
 mongoose.model('Cat', Cat);
 mongoose.model('Accessory', Accessory);
-mongoose.connect('mongodb://heroku_mkxw0pnd:3oohd3m15el05dgm713136t8lq@ds061974.mongolab.com:61974/heroku_mkxw0pnd');
+mongoose.connect('mongodb://localhost/catdb');
+//mongoose.connect('mongodb://heroku_mkxw0pnd:3oohd3m15el05dgm713136t8lq@ds061974.mongolab.com:61974/heroku_mkxw0pnd');

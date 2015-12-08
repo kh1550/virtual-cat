@@ -13,34 +13,18 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req,res,next) {
-  req.session.user = undefined;
-  req.session.cat = undefined;
-  if (req.body.login) {
-    console.log("Attempting to sign in...", req.body.username);
-    passport.authenticate('local', function(err,user) {
-      console.log(err, user, "user: ", req.body.username, req.body.password);
-      if (user) {
-        req.logIn(user, function(err) {
-          console.log("User received: ", user);
-          User.findOne({username: req.body.username}, function(err,result,count) {
-            if (result == undefined) {
-              console.log("Not Found!");
-              res.redirect('/play/cat_not_found');
-            } else {
-              console.log("Found!");
-              req.session.user = result._id;
-              req.session.cat = result.cat;
-              res.redirect('/play');
-            }
-          });
-        });
-      } else {
-        res.render('index', {message: "Your username or password is incorrect."});
-      }
-    })(res,req,next);
-  } else {
-    res.render('index');
-  }
+  console.log("Attempting to sign in...", req.body.username);
+  passport.authenticate('local', function(err,user) {
+    console.log(err, user, "user: ", req.body.username, req.body.password);
+    if(user) {
+      req.logIn(user, function(err) {
+        console.log("User received: ", user);
+        res.redirect('/play');
+      });
+    } else {
+      res.render('index', {message:'Your login or password is incorrect.'});
+    }
+  })(req, res, next);
 });
 
 router.post('/name', function(req, res, next) {
@@ -55,14 +39,15 @@ router.post('/name', function(req, res, next) {
   c.save(function(err,cat,count) {
     console.log("Cat saved: ", cat, req.body.cat_name);
     console.log("User to register: ", req.body.username);
-    User.register(new User({username: req.body.username, gold: 0, cat: cat._id}),req.body.password,function (err,user) {
+    User.register(new User({username:req.body.username,gold:0,cat:cat._id}), 
+      req.body.password, function(err, user){
       if (err) {
         console.log(err);
         res.render('name', {message: "Your username is already taken."});
       } else {
-        passport.authenticate('local')(req,res,function() {
-          req.session.user = user._id;
-          req.session.cat = cat._id;
+        passport.authenticate('local')(req, res, function() {
+          req.user._id = user._id;
+          req.user.cat = cat._id;
           res.redirect('/play');
         });
       }
@@ -79,12 +64,12 @@ router.get('/play/no_cat_found', function(req,res,next) {
 });
 
 router.get('/play', function(req, res, next) {
-  if (req.session && req.session.user && req.session.cat) {
-    User.findOne({_id: req.session.user}, function (err,user,count) {
-      Cat.findOne({_id: req.session.cat}, function (err,result,count){
+  if (req.session && req.user._id && req.user.cat) {
+    User.findOne({_id: req.user._id}, function (err,user,count) {
+      Cat.findOne({_id: req.user.cat}, function (err,result,count){
         if (user == undefined || result == undefined) { res.redirect('/play/no_cat_found'); }
         console.log("Cat: ", result);
-        res.render('play', {user: req.session.user, gold: user.gold, cat: result._id, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, accessory: result.accessory});
+        res.render('play', {user: req.user._id, gold: user.gold, cat: result._id, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, accessory: result.accessory});
       });
     });
   } else {
@@ -96,10 +81,10 @@ router.post('/play', function(req, res, next) {
   console.log(req.body, req.session);
   if (req.body.work) {
     console.log("Working!");
-    User.findOne({_id: req.session.user}, function (err,u,count) {
+    User.findOne({_id: req.user._id}, function (err,u,count) {
       u.gold += 100;
       u.save(function (err2,user,count2) {
-        Cat.findOne({_id: req.session.cat}, function (err3,cat,count3) {
+        Cat.findOne({_id: req.user.cat}, function (err3,cat,count3) {
           if (cat.energy > 0) { cat.energy -= 5; } else { cat.energy = 0; }
           if (cat.thirst > 0) { cat.thirst -= 5; } else { cat.thirst = 0; }
           if (cat.hunger > 0) { cat.hunger -= 5; } else { cat.hunger = 0; }
@@ -123,11 +108,11 @@ router.post('/play', function(req, res, next) {
     });
   } else if (req.body.treat) {
     console.log("Eating!");
-    User.findOne({_id: req.session.user}, function (err,u,count) {
+    User.findOne({_id: req.user._id}, function (err,u,count) {
       if (u.gold >= 25) {
         u.gold -= 25;
         u.save(function (err2,user,count2) {
-          Cat.findOne({_id: req.session.cat}, function (err3,cat,count3) {
+          Cat.findOne({_id: req.user.cat}, function (err3,cat,count3) {
             cat.hunger += 20;
             if (cat.hunger > 100) { cat.hunger = 100; }
             if (cat.energy > 0) { cat.energy -= 5; } else { cat.energy = 0; }
@@ -150,18 +135,18 @@ router.post('/play', function(req, res, next) {
           });
         });
       } else {
-        Cat.findOne({_id: req.session.cat}, function (err3,result,count3) {
+        Cat.findOne({_id: req.user.cat}, function (err3,result,count3) {
           res.render('play', {user: u._id, gold: u.gold, cat: result._id, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, accessory: result.accessory});
         });
       }
     });
   } else if (req.body.toy) {
     console.log("Playing!");
-    User.findOne({_id: req.session.user}, function (err,u,count) {
+    User.findOne({_id: req.user._id}, function (err,u,count) {
       if (u.gold >= 50) { 
         u.gold -= 50;
         u.save(function (err2,user,count2) {
-          Cat.findOne({_id: req.session.cat}, function (err3,cat,count3) {
+          Cat.findOne({_id: req.user.cat}, function (err3,cat,count3) {
             if (cat.energy > 0) { cat.energy -= 5; } else { cat.energy = 0; }
             if (cat.thirst > 0) { cat.thirst -= 5; } else { cat.thirst = 0; }
             if (cat.hunger > 0) { cat.hunger -= 5; } else { cat.hunger = 0; }
@@ -176,15 +161,15 @@ router.post('/play', function(req, res, next) {
           });
         });
       } else {
-        Cat.findOne({_id: req.session.cat}, function (err3,result,count3) {
+        Cat.findOne({_id: req.user.cat}, function (err3,result,count3) {
           res.render('play', {user: u._id, gold: u.gold, cat: result._id, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, accessory: result.accessory});
         });
       }
     });
   } else if (req.body.cuddle) {
     console.log("Sleeping!");
-    User.findOne({_id: req.session.user}, function (err,user,count) {
-      Cat.findOne({_id: req.session.cat}, function (err3,cat,count3) {
+    User.findOne({_id: req.user._id}, function (err,user,count) {
+      Cat.findOne({_id: req.user.cat}, function (err3,cat,count3) {
         cat.energy += 30;
         if (cat.energy > 100) { cat.energy = 100; }
         if (cat.thirst > 0) { cat.thirst -= 5; } else { cat.thirst = 0; }
@@ -207,11 +192,11 @@ router.post('/play', function(req, res, next) {
     });
   } else if (req.body.milk) {
     console.log("Drinking!");
-    User.findOne({_id: req.session.user}, function (err,u,count) {
+    User.findOne({_id: req.user._id}, function (err,u,count) {
       if (u.gold >= 25) { 
         u.gold -= 25;
         u.save(function (err2,user,count2) {
-          Cat.findOne({_id: req.session.cat}, function (err3,cat,count3) {
+          Cat.findOne({_id: req.user.cat}, function (err3,cat,count3) {
             cat.thirst += 20;
             if (cat.thirst > 100) { cat.thirst = 100; }
             if (cat.energy > 0) { cat.energy -= 5; } else { cat.energy = 0; }
@@ -234,21 +219,21 @@ router.post('/play', function(req, res, next) {
           });
         });
       } else {
-        Cat.findOne({_id: req.session.cat}, function (err3,result,count3) {
+        Cat.findOne({_id: req.user.cat}, function (err3,result,count3) {
           res.render('play', {user: u._id, gold: u.gold, cat: result._id, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, accessory: result.accessory});
         });
       }
     });
   } else if (req.body.cafe) {
     console.log("Cafes are currently closed!");
-    User.findOne({_id: req.session.user}, function (err,user,count) {
-      Cat.findOne({_id: req.session.cat}, function (err3,result,count3) {
+    User.findOne({_id: req.user._id}, function (err,user,count) {
+      Cat.findOne({_id: req.user.cat}, function (err3,result,count3) {
         res.render('play', {user: user._id, gold: user.gold, cat: result._id, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, accessory: result.accessory});
       });
     });
   } else {
-    User.findOne({_id: req.session.user}, function (err,user,count) {
-      Cat.findOne({_id: req.session.cat}, function (err3,result,count3) {
+    User.findOne({_id: req.user._id}, function (err,user,count) {
+      Cat.findOne({_id: req.user.cat}, function (err3,result,count3) {
         res.render('play', {user: user._id, gold: user.gold, cat: result._id, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, accessory: result.accessory});
       });
     });

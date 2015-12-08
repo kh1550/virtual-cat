@@ -7,7 +7,27 @@
 
   <span class="gold"><p class="stat-label label-gold"><img src="/images/gold.png" class="img-small"> Gold</p></span><span class="gold-count"><p class="stat-mood">{{gold}}</p></span>
 
-
+passport.authenticate('local', function(err,user) {
+      console.log(err, user, "user: ", req.body.username, req.body.password);
+      if (user) {
+        req.logIn(user, function(err) {
+          console.log("User received: ", user);
+          // User.findOne({username: req.body.username}, function(err,result,count) {
+          //   if (result == undefined) {
+          //     console.log("Not Found!");
+          //     res.redirect('/play/cat_not_found');
+          //   } else {
+          //     console.log("Found!");
+          //     req.session.user = result._id;
+          //     req.session.cat = result.cat;
+          //     res.redirect('/play');
+          //   }
+          // });
+        });
+      } else {
+        res.render('index', {message: "Your username or password is incorrect."});
+      }
+    })(res,req,next);
   
 .stats-OLD {
 	display: block;
