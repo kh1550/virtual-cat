@@ -23,7 +23,6 @@ var Cat = new mongoose.Schema({
 });
 
 var User = new mongoose.Schema({
- username: String,
  gold: Number,
  cat: {type: mongoose.Schema.Types.ObjectId, ref: 'Cat'}
 });

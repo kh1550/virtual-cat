@@ -6,6 +6,12 @@
     <link rel="shortcut icon" href="/images/paw_prints.png" />
   </head>
   <body>
+  	<img src="/images/background.jpg" class="background"/>
+  	{{#if message}}
+  		<div class="container-messages">
+  			<h4 id="errors">{{message}}</h4>
+  		</div>
+  	{{/if}}
     {{{body}}}
   </body>
 </html>
