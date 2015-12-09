@@ -45,6 +45,32 @@ a {
   text-align: center;
   text-shadow: 4px 0 0 #000, -4px 0 0 #000, 0 4px 0 #000, 0 -4px 0 #000, 4px 4px #000, -4px -4px 0 #000, 4px -4px 0 #000, -4px 4px 0 #000; }
 
+#container-shop {
+  position: fixed;
+  top: 5%;
+  left: 5%;
+  width: 90%;
+  height: 90%;
+  background-color: #d2a679;
+  display: none;
+  border: 4px solid #993333;
+  border-radius: 4%;
+  padding: 2%; }
+  #container-shop .btn-exit {
+    background-color: #993333;
+    border: 2px solid #602020;
+    color: white;
+    font-family: "Cookies", Helvetica, Arial, sans-serif;
+    font-size: 24px;
+    display: inline; }
+  #container-shop h1 {
+    color: white;
+    display: inline;
+    vertical-align: bottom;
+    text-shadow: 4px 0 0 #000, -4px 0 0 #000, 0 4px 0 #000, 0 -4px 0 #000, 4px 4px #000, -4px -4px 0 #000, 4px -4px 0 #000, -4px 4px 0 #000; }
+  #container-shop table {
+    margin-top: 4%; }
+
 .text-border {
   text-shadow: 3px 0 0 #000, -3px 0 0 #000, 0 3px 0 #000, 0 -3px 0 #000, 3px 3px #000, -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000; }
 
@@ -68,9 +94,10 @@ a {
   width: 175px;
   font-size: 24px;
   border-radius: 25%;
-  word-wrap: break-word; }
-  .btn-large:active {
-    border: none; }
+  white-space: normal;
+  word-break: break-word; }
+  .btn-large:focus, .btn-large:active {
+    outline: none !important; }
 
 .btn-upgrade {
   margin-left: 5px;
@@ -86,9 +113,11 @@ a {
   font-style: normal;
   font-weight: 400;
   line-height: 1; }
+  .btn-upgrade:focus, .btn-upgrade:active {
+    outline: none !important; }
 
 .div-wrap {
-  margin-top: 1%; }
+  margin-top: 2%; }
 
 .progress {
   width: 100%;
@@ -123,11 +152,13 @@ td.stat-text {
 div.gold-count {
   font-size: 20px;
   text-align: center;
+  vertical-align: center;
   border: 1px solid #ccc;
   border-radius: 0 10px 10px 0;
   width: 100%;
-  height: 89px;
-  background-color: #FFF; }
+  height: 87px;
+  background-color: #FFF;
+  padding-top: 4%; }
 
 .gold-label {
   width: 200px;

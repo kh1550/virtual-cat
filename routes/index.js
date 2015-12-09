@@ -64,7 +64,7 @@ router.get('/play/no_cat_found', function(req,res,next) {
 });
 
 router.get('/play', function(req, res, next) {
-  if (req.session && req.user._id && req.user.cat) {
+  if (req.session && req.user && req.user.cat) {
     User.findOne({_id: req.user._id}, function (err,user,count) {
       Cat.findOne({_id: req.user.cat}, function (err,result,count){
         if (user == undefined || result == undefined) { res.redirect('/play/no_cat_found'); }
@@ -240,8 +240,26 @@ router.post('/play', function(req, res, next) {
   }
 });
 
-router.get('/cafe/:cafe_id', function(req, res, next) {
-  res.send("cat cafe");
+router.post('/buy', function(req, res, next) {
+  req.on('data', function (chunk) {
+    var formdata = chunk.toString();
+    console.log("Buying ", formdata, "... ");
+    Accessory.findOne({item: formdata}, function  (err1,acc,count) {
+      if (err1) { console.log(err1); } else {
+        User.findOne({_id: req.user._id}, function (err,u,count) {
+          if (item.cost <= u.gold) {
+            Cat.findOne({_id: req.user.cat}, function (err3,result,count3) {
+              res.render('play', {message: "Insufficient funds!", user: u._id, gold: u.gold, cat: result._id, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, accessory: result.accessory});
+            });
+          } else {
+            Cat.findOne({_id: req.user.cat}, function (err3,cat,count3) {
+          res.render('play', {user: user._id, gold: user.gold, cat: result._id, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, accessory: result.accessory});
+      });
+          }
+        })
+      }
+    });
+  });
 });
 
 module.exports = router;

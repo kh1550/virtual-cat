@@ -28,6 +28,8 @@ passport.authenticate('local', function(err,user) {
         res.render('index', {message: "Your username or password is incorrect."});
       }
     })(res,req,next);
+
+    <input class="btn btn-default btn-upgrade" name="gen-url" value="+" type="submit" disabled>
   
 .stats-OLD {
 	display: block;

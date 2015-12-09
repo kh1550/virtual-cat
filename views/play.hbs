@@ -8,9 +8,9 @@
         <thead></thead>
         <tbody>
           <tr>
-            <td><input class="btn btn-default btn-large" name="work" type="submit" value="Work!"><input class="btn btn-default btn-upgrade" name="work-upgrade" value="+" type="submit"></td>
-            <td><input class="btn btn-default btn-large" name="toy" type="submit" value="Toy!"><input class="btn btn-default btn-upgrade" name="toy-upgrade" value="+" type="submit"></td>
-            <td><input class="btn btn-default btn-large" name="treat" type="submit" value="Treat!"><input class="btn btn-default btn-upgrade" name="treat-upgrade" value="+" type="submit"></td>
+            <td><input class="btn btn-default btn-large" name="work" type="submit" value="Work!"></td>
+            <td><input class="btn btn-default btn-large" name="toy" type="submit" value="Toy!"></td>
+            <td><input class="btn btn-default btn-large" name="treat" type="submit" value="Treat!"></td>
           </tr>
         </tbody>
       </table>
@@ -18,9 +18,9 @@
         <thead></thead>
         <tbody>
           <tr>
-            <td><input class="btn btn-default btn-large" name="cuddle" type="submit" value="Cuddle!"><input class="btn btn-default btn-upgrade" name="cuddle-upgrade" value="+" type="submit"></td>
-            <td><input class="btn btn-default btn-large" name="milk" type="submit" value="Milk!"><input class="btn btn-default btn-upgrade" name="milk-upgrade" value="+" type="submit"></td>
-            <td><input class="btn btn-default btn-large" name="cafe" type="submit" value="Cat Cafe!" disabled><input class="btn btn-default btn-upgrade" name="gen-url" value="+" type="submit" disabled></td>
+            <td><input class="btn btn-default btn-large" name="cuddle" type="submit" value="Cuddle!"></td>
+            <td><input class="btn btn-default btn-large" name="milk" type="submit" value="Milk!"></td>
+            <td><input class="btn btn-default btn-large" name="shop" type="button" value="Shop!" id="shop"></td>
           </tr>
         </tbody>
       </table>
@@ -80,3 +80,17 @@
     </table>
   </div>
 </div>
+
+<div id="container-shop">
+  <input type="button" class="btn btn-default btn-upgrade btn-exit" value="x" id="exit"> <h1>Shop</h1>
+  <table class="space">
+    <thead></thead>
+    <tbody>
+      <tr>
+        <td><button class="btn btn-default btn-large" id="nyan" onClick="buyItem(this);">Nyan Costume</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<script type="text/javascript" src="/javascripts/shop.js"></script>
