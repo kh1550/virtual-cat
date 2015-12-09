@@ -69,7 +69,7 @@ router.get('/play', function(req, res, next) {
       Cat.findOne({_id: req.user.cat}, function (err,result,count){
         if (user == undefined || result == undefined) { res.redirect('/play/no_cat_found'); }
         console.log("Cat: ", result);
-        res.render('play', {user: req.user._id, gold: user.gold, cat: result._id, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, accessory: result.accessory});
+        res.render('play', {gold: user.gold, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, src: result.accessory});
       });
     });
   } else {
@@ -101,7 +101,7 @@ router.post('/play', function(req, res, next) {
             }
           }
           cat.save(function (err4,result,count4) {
-            res.render('play', {user: user._id, gold: user.gold, cat: result._id, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, accessory: result.accessory});
+            res.render('play', {gold: user.gold, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, src: result.accessory});
           });
         });
       });
@@ -130,13 +130,13 @@ router.post('/play', function(req, res, next) {
               }
             }
             cat.save(function (err4,result,count4) {
-              res.render('play', {user: user._id, gold: user.gold, cat: result._id, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, accessory: result.accessory});
+              res.render('play', {gold: user.gold, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, src: result.accessory});
             });
           });
         });
       } else {
         Cat.findOne({_id: req.user.cat}, function (err3,result,count3) {
-          res.render('play', {user: u._id, gold: u.gold, cat: result._id, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, accessory: result.accessory});
+          res.render('play', {user: u._id, gold: u.gold, cat: result._id, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, src: result.accessory});
         });
       }
     });
@@ -156,13 +156,13 @@ router.post('/play', function(req, res, next) {
             else if (cat.thirst < 40) { cat.mood = "Thirsty"; }
             else { cat.mood = "Pleased"; }
             cat.save(function (err4,result,count4) {
-              res.render('play', {user: user._id, gold: user.gold, cat: result._id, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, accessory: result.accessory});
+              res.render('play', {gold: user.gold, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, src: result.accessory});
             });
           });
         });
       } else {
         Cat.findOne({_id: req.user.cat}, function (err3,result,count3) {
-          res.render('play', {user: u._id, gold: u.gold, cat: result._id, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, accessory: result.accessory});
+          res.render('play', {user: u._id, gold: u.gold, cat: result._id, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, src: result.accessory});
         });
       }
     });
@@ -186,7 +186,7 @@ router.post('/play', function(req, res, next) {
           }
         }
         cat.save(function (err4,result,count4) {
-          res.render('play', {user: user._id, gold: user.gold, cat: result._id, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, accessory: result.accessory});
+          res.render('play', {gold: user.gold, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, src: result.accessory});
         });
       });
     });
@@ -214,13 +214,13 @@ router.post('/play', function(req, res, next) {
               }
             }
             cat.save(function (err4,result,count4) {
-              res.render('play', {user: user._id, gold: user.gold, cat: result._id, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, accessory: result.accessory});
+              res.render('play', {gold: user.gold, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, src: result.accessory});
             });
           });
         });
       } else {
         Cat.findOne({_id: req.user.cat}, function (err3,result,count3) {
-          res.render('play', {user: u._id, gold: u.gold, cat: result._id, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, accessory: result.accessory});
+          res.render('play', {user: u._id, gold: u.gold, cat: result._id, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, src: result.accessory});
         });
       }
     });
@@ -228,13 +228,13 @@ router.post('/play', function(req, res, next) {
     console.log("Cafes are currently closed!");
     User.findOne({_id: req.user._id}, function (err,user,count) {
       Cat.findOne({_id: req.user.cat}, function (err3,result,count3) {
-        res.render('play', {user: user._id, gold: user.gold, cat: result._id, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, accessory: result.accessory});
+        res.render('play', {gold: user.gold, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, src: result.accessory});
       });
     });
   } else {
     User.findOne({_id: req.user._id}, function (err,user,count) {
       Cat.findOne({_id: req.user.cat}, function (err3,result,count3) {
-        res.render('play', {user: user._id, gold: user.gold, cat: result._id, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, accessory: result.accessory});
+        res.render('play', {gold: user.gold, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, src: result.accessory});
       });
     });
   }
@@ -247,14 +247,21 @@ router.post('/buy', function(req, res, next) {
     Accessory.findOne({item: formdata}, function  (err1,acc,count) {
       if (err1) { console.log(err1); } else {
         User.findOne({_id: req.user._id}, function (err,u,count) {
-          if (item.cost <= u.gold) {
-            Cat.findOne({_id: req.user.cat}, function (err3,result,count3) {
-              res.render('play', {message: "Insufficient funds!", user: u._id, gold: u.gold, cat: result._id, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, accessory: result.accessory});
+          if (acc.cost <= u.gold) {
+            u.gold -= acc.cost;
+            u.save(function (err4,user,count4) {
+              Cat.findOne({_id: req.user.cat}, function (err3,cat,count3) {
+                cat.accessory = acc.image;
+                cat.save(function (err5,result,count5) {
+                  res.send({gold: user.gold, src: result.accessory});
+                });
+              });
             });
+            
           } else {
-            Cat.findOne({_id: req.user.cat}, function (err3,cat,count3) {
-          res.render('play', {user: user._id, gold: user.gold, cat: result._id, name: result.name, mood: result.mood, hunger: result.hunger, thirst: result.thirst, energy: result.energy, accessory: result.accessory});
-      });
+            Cat.findOne({_id: req.user.cat}, function (err3,result,count3) {
+              res.send({message: "Insufficient funds!"});
+            });
           }
         })
       }

@@ -19,7 +19,7 @@ var Cat = new mongoose.Schema({
   hunger: Number,
   thirst: Number,
   energy: Number,
-  accessory: {type: mongoose.Schema.Types.ObjectId, ref: 'Accessory'}
+  accessory: String
 });
 
 var User = new mongoose.Schema({

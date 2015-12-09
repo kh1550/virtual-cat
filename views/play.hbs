@@ -1,5 +1,8 @@
-<div class="view">
+<div class="view" id="view">
   <img src="/images/cat.png" class="cat" />
+  {{#if src}}
+    <img src="{{src}}" class="cat"/>
+  {{/if}}
 </div>
 <div class="actions">
   <div class="div-wrap">
@@ -74,7 +77,7 @@
       <tbody>
         <tr class="gold-row">
           <td class="stat-label"><div class="gold-label"><p class="stat-label"><img src="/images/gold.png" class="img-gold"> Gold</div></td>
-          <td class="gold-count"><div class="gold-count">{{gold}}</div></td>
+          <td class="gold-count"><div class="gold-count"><p id="gold-text">{{gold}}</p></div></td>
         </tr>
       </tbody>
     </table>

@@ -18,8 +18,24 @@ function init() {
 }
 
 function buyItem(item) {
-  console.log(item_id.id);
   var req = new XMLHttpRequest();
-  req.open('POST', '/buy', false);
+  req.open('POST', '/buy', true);
   req.send(item.id);
+  console.log("Sent request for ", item.id);
+  req.addEventListener("load",function() {
+    console.log(req.responseText);
+    var parsed = JSON.parse(req.responseText);
+    if (parsed.length == 1) {
+      document.getElementById('errors').text = parsed[0];
+    } else {
+      console.log(parsed);
+
+      var new_gold = document.createTextNode(parsed[0]);
+      var gold = document.getElementById('gold-text');
+      gold.parentNode.replaceChild(new_gold, gold);
+      var image = document.createElement('img');
+      image.src = parsed[1];
+      document.getElementById('view').appendChild(image);
+    }
+  });
 }
