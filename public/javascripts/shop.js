@@ -38,7 +38,6 @@ function buyItem(item) {
       //image.className = "cat";
       document.getElementById('acc').src = parsed.src;
       document.getElementById('acc').style.visibility = "visible";
->>>>>>> fixing corrupted .git
     }
   });
 }
