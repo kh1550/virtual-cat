@@ -26,18 +26,6 @@ function buyItem(item) {
     console.log(req.responseText);
     var parsed = JSON.parse(req.responseText);
     if (parsed.length == 1) {
-<<<<<<< HEAD
-      document.getElementById('errors').text = parsed[0];
-    } else {
-      console.log(parsed);
-
-      var new_gold = document.createTextNode(parsed[0]);
-      var gold = document.getElementById('gold-text');
-      gold.parentNode.replaceChild(new_gold, gold);
-      var image = document.createElement('img');
-      image.src = parsed[1];
-      document.getElementById('view').appendChild(image);
-=======
       document.getElementById('errors').text = parsed.message;
     } else {
       console.log(parsed);
