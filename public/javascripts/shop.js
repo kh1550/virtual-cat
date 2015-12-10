@@ -25,8 +25,17 @@ function buyItem(item) {
   req.addEventListener("load",function() {
     console.log(req.responseText);
     var parsed = JSON.parse(req.responseText);
-    if (parsed.length == 1) {
-      document.getElementById('errors').text = parsed.message;
+    if (parsed.message) {
+      var h4err = document.getElementById('errors');
+      console.log(h4err.childNodes);
+      if (h4err.childNodes.length >= 1) {
+        var child = h4err.childNodes[0];
+        h4err.replaceChild(document.createTextNode(parsed.message),child);
+      } else {
+        h4err.appendChild(document.createTextNode(parsed.message));
+      }
+      h4err.style.visibility = "visible";
+      setTimeout(function() { h4err.style.visibility = "hidden"; },1000);
     } else {
       console.log(parsed);
 
