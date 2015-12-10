@@ -1,8 +1,10 @@
 <div class="view" id="view">
   <img src="/images/cat.png" class="cat" />
-  {{#if src}}
-    <img src="{{src}}" class="cat"/>
-  {{/if}}
+  <img src="{{#if src}}{{src}}{{/if}}" class="cat" id ="acc" 
+    {{#unless src}}
+      style="visibility: hidden"
+    {{/unless}}
+  />
 </div>
 <div class="actions">
   <div class="div-wrap">

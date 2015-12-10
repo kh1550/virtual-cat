@@ -4,10 +4,19 @@
   <br>
   <h3 class="text-border">Have a cat? Sign in!</h3>
   <form method="POST">
-    <h3 class="btn-go-line"><input type="text" name="username" id="username"></h3>
-    <h3 class="btn-go-line"><input type="password" name="password" id="password">
-    <input type="submit" value="Go!" name="login" class="btn btn-default"></h3>
+    <table>
+      <thead></thead>
+      <tbody>
+        <tr>
+          <td><h3 class="btn-go-line"><input type="text" name="username" id="username" placeholder="Username"> <input type="button" value="Go!" style="visibility:hidden"></h3></td>
+        </tr>
+        <tr>
+          <td><h3 class="btn-go-line"><input type="password" name="password" id="password"> <input type="submit" value="Go!" name="login" class="btn btn-default"></h3></td>
+        </tr>
+      </tbody>
+    </table>
   </form>
   <br>
   <h3 class="text-border"><a href="/name" class="link-go">Need a Cat?</a></h3>
+  <h1 class="text-border" id="help"><a href="/help" class="link-go">How To Play!</a></h1>
 </div>

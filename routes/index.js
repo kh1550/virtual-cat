@@ -269,4 +269,8 @@ router.post('/buy', function(req, res, next) {
   });
 });
 
+router.get('/help', function(req, res, next) {
+  res.render('help');
+});
+
 module.exports = router;

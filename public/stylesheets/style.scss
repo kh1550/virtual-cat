@@ -11,6 +11,11 @@ body {
   font-family: $font-stack;
   min-height: 800px;
   height: 100%;
+  .btn-default {
+  	&:focus, &:active {
+		outline: none !important;
+	}
+  }
 }
 
 a {
@@ -55,6 +60,44 @@ a {
 	color: white;
 	text-align: center;
 	text-shadow: 4px 0 0 #000, -4px 0 0 #000, 0 4px 0 #000, 0 -4px 0 #000, 4px 4px #000, -4px -4px 0 #000, 4px -4px 0 #000, -4px 4px 0 #000;
+
+	table {
+		width: 25%;
+		margin: auto;
+	}
+}
+
+#container-shop {
+	position: fixed;
+	top: 5%;
+	left: 5%;
+	width: 90%;
+	height: 90%;
+	background-color: #d2a679;
+	display: none;
+	border: 4px solid #993333;
+	border-radius: 4%;
+	padding: 2%;
+
+	.btn-exit {
+		background-color: #993333;
+		border: 2px solid #602020;
+		color: white;
+		font-family: $font-stack;
+		font-size: 24px;
+		display: inline;
+	}
+
+	h1 {
+		color: white;
+		display: inline;
+		vertical-align: bottom;
+		text-shadow: 4px 0 0 #000, -4px 0 0 #000, 0 4px 0 #000, 0 -4px 0 #000, 4px 4px #000, -4px -4px 0 #000, 4px -4px 0 #000, -4px 4px 0 #000;
+	}
+
+	table {
+		margin-top: 4%;
+	}
 }
 
 #container-shop {
@@ -117,9 +160,6 @@ a {
 	border-radius: 25%;
 	white-space: normal;
 	word-break: break-word;
-	&:focus, &:active {
-		outline: none !important;
-	}
 }
 
 .btn-upgrade {
@@ -255,4 +295,15 @@ table.space {
 
 .red {
 	border: 3px solid red;
+}
+
+#acc {
+	transform: translate(150%, 110%) rotate(-45deg);
+}
+
+#help {
+	margin-top: 18%;
+	a {
+		color: #77ff33;
+	}
 }
